@@ -1,0 +1,38 @@
+_repo: The-Fathers-of-the-Constitution--A-Chronicle-of-the-Establishment-of-the-Union_3032
+_version: 0.0.1
+creator:
+  author:
+    agent_name: Farrand, Max
+    birthdate: 1869
+    deathdate: 1945
+    gutenberg_agent_id: '1093'
+    url: http://www.gutenberg.org/2009/agents/1093
+  editor:
+    agent_name: Johnson, Allen
+    birthdate: 1870
+    deathdate: 1931
+    gutenberg_agent_id: '1084'
+    url: http://www.gutenberg.org/2009/agents/1084
+    wikipedia: http://en.wikipedia.org/wiki/Allen_Johnson_(historian)
+description: ''
+gutenberg_bookshelf:
+- Children's History
+- United States
+gutenberg_issued: '2002-01-01'
+gutenberg_type: Text
+identifiers:
+  gutenberg: '3032'
+language: en
+publication_note: 'New Haven :  Yale University Press,  1921'
+publisher: Project Gutenberg
+rights: Public domain in the USA.
+rights_url: http://creativecommons.org/about/pdm
+series_note: Chronicles of America series; v. 13
+subjects:
+- !lcsh 'United States -- History -- Confederation, 1783-1789'
+- !lcc 'E300'
+- !lcsh 'Constitutional history -- United States'
+- !lcsh 'United States -- Politics and government -- 1783-1789'
+- GITenberg
+title: 'The Fathers of the Constitution: A Chronicle of the Establishment of the Union'
+url: http://www.gutenberg.org/ebooks/3032
