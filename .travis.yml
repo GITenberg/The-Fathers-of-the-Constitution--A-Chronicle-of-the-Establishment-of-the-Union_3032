@@ -1,0 +1,61 @@
+sudo: required
+dist: trusty
+language: ruby
+
+before_install:
+before_install:
+- gem install asciidoctor -v 1.5.2
+- gem install tilt
+- sudo pip install git+https://github.com/gitenberg-dev/gitberg
+- sudo pip install pillow
+- sudo pip install cssutils
+- sudo pip install docutils
+- sudo pip install roman
+- sudo pip install git+https://github.com/gitenberg-dev/pg-epubmaker
+script:
+- VERSION=`ruby -e "require 'yaml'; meta = YAML.load_file('metadata.yaml'); puts meta['_version'];"`
+- git clone https://github.com/gitenberg-dev/asciidoctor-htmlbook.git
+- sudo pip install -r asciidoctor-htmlbook/gitberg-machine/requirements.txt
+
+- /usr/bin/python -c "from gitenberg import travis; travis.build_epub()"
+- ebook-convert book.epub book.mobi
+- xvfb-run ebook-convert book.epub book.pdf
+branches:
+  only:
+  - master
+notifications:
+  webhooks:
+    urls:
+      - https://unglue.it/api/travisci/webhook
+    on_success: always
+    on_failure: never
+    on_start: never
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: PSslHbU8z23IZ35lGEGOQEKNe3QMf8Pr16fpOWB4Hc16vnfSPE67e87CBDn23aJ5OMN/r4eqQLtHShIaCnYsE1ziGzsL2Ghgx6F8ewMpjAax8rq1EKklxJ5M5a3i7zlZqHXGPGfFc6XFvyR5juX9E48LbukdC+se/1XcyP/KLZ70UcXrza5A2ig9mELRe6LrOe92H+hO/ItvSPbBHPmrvRKp2gxurD377mJCxeA//EeF5Rfdta5HtkKai/FM3O/lwiwJBExCjwp51tcqFnjJiTVSjzwC9PA3f4AwdG0FJUx0N3S6O+mm2zT5vPQGjXPRk3eWe29telM3G6pIT9I2kpYg5uVRuu7+zUx86Vpv2GMZ3oMmvLSEgiKgZ/3ePPcoG2IE9Gn/xmUZ0eeXgl3wN/bHMiag5wLjouYjelNnFt1FJ5/Xt5sf3D6Wftb0xQSMKQjRzoNygs0/yB5yBgei2RF94ebrBbflm23ZRcV+rKv5IzeoGUiP/BcwCBMOzdmMepLxAxnq7Q+YdhJGhexxtN6ykE2AM1uKyW+BGyJ+Tw80Xnp/eqX+xmmIAzRzF8HVbya5kse+fhVlv5pnUuPrHkgF/gPvw+qoCJcD1VW2xkjzMwLAazYiIfNnygJLVOZZIwi92TdjKrjzbwdSu7lV4fllfUMr1E5I9XhvjKp+OhA=
+  file:
+    - book.epub
+    - book.mobi
+    - book.pdf
+  "on":
+    repo: GITenberg/The-Fathers-of-the-Constitution--A-Chronicle-of-the-Establishment-of-the-Union_3032
+addons:
+  apt:
+    packages:
+    - xsltproc
+    - xvfb
+    - calibre
+    - python-pip
+    - git
+    - python-dev
+    - libjpeg-dev
+    - libpng-dev
+    - libfreetype6
+    - libfreetype6-dev
+    - zlib1g-dev
+    - python-lxml
+    - libxml2-dev
+    - libxslt1-dev
+    - tidy
